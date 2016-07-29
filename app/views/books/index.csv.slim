@@ -1,0 +1,10 @@
+ruby:
+  attributes = %w(id title author price)
+  headers = %w(id title author price(VND))
+
+= CSV.generate_line headers
+
+- @books.each do |book|
+  - record = attributes.map { |attribute| book.send(attribute) }
+  = CSV.generate_line record
+
